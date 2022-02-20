@@ -59,7 +59,7 @@ class TestUser(unittest.TestCase):
         test_user = User("John Doe", "userPass")
         test_user.save_user()
         
-        self.new_user.delete_contact() #delete a user object
+        self.new_user.delete_user() #delete a user object
         self.assertEqual(len(User.users_list), 1)
 
         
