@@ -23,6 +23,13 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.new_user.user_name, "Dennis Kiboi")
         self.assertEqual(self.new_user.user_pass, "myPassword")
 
+    def tearDown(self):
+        """
+        tearDown method does clean up after each test case has run
+        """
+
+        User.users_list = []
+
     def test_save_user(self):
         """
         test_save_user test case to test if the user object is saved into the user list
@@ -40,9 +47,10 @@ class TestUser(unittest.TestCase):
         self.new_user.save_user()
         test_user = User("John Doe", "userPass")
         test_user.save_user()
+
         self.assertEqual(len(User.users_list), 2)
 
-    def delete_user(self):
+    def test_delete_user(self):
         """
         delete_user method deletes a password locker account
         """
