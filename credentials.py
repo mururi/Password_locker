@@ -28,3 +28,19 @@ class Credential:
         """
 
         Credential.credentials_list.remove(self)
+
+    @classmethod
+    def find_by_platform(cls, platform):
+        """
+        find_by_platform method takes in a platform name and returns a credential that matches that platform name
+
+        Args:
+            platform: platform name to search for
+        Returns:
+            Credential that matches the platform name
+        """
+
+        for credential in cls.credentials_list:
+            if credential.platform == platform:
+                return credential
+        
