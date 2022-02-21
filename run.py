@@ -28,15 +28,47 @@ def authenticate_user(name, pw):
 def main():
     print("Welcome to Password Locker App")
     print('\n')
-    print("What would you like to do?")
-    print('\n')
     
     while True:
+        print("What would you like to do?")
+        print('\n')
         print("Use these short codes: li - log in, su - sign up, ex - exit")
         print("-"*15)
         main_opt = input().lower()
         if main_opt == 'li':
+            print("\n")
             print("Login to your Password Locker Account")
             print("-"*15)
 
-            print("")
+            name = input("Enter your username: ")
+            pw = input("Enter your password: ")
+
+            if authenticate_user(name, pw):
+                print("\n")
+                print("LOGIN SUCCESSFUL")
+
+            else:
+                print("LOGIN FAILED: CHECK USERNAME OR EMAIL")
+
+        elif main_opt == 'su':
+            print("\n")
+            print("Create a Password Locker Account")
+            print("-"*15)
+
+            login = input("Enter your preferred Username: ")
+            login_pass = input("Enter your preffered Password: ")
+
+            save_user(create_user(login, login_pass))
+            print("\n")
+            print(f"Your new Username is : {login}")
+            print(f"Your new Password is : {login_pass}")
+
+        elif main_opt == 'ex':
+            print("GOODBYE!!")
+            break
+
+        else:
+            print("Wrong entry. Please use the provided short codes.")
+
+if __name__ == '__main__':
+    main()
