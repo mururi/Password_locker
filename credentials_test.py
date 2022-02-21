@@ -34,11 +34,23 @@ class TestCredentials(unittest.TestCase):
 
     def test_save_credential(self):
         """
-        test_save_credential test case to test if the user object is saved into the credentials list
+        test_save_credential test case to test if the credential object is saved into the credentials list
         """
 
         self.new_credential.save_credential() #saving the new credential
         self.assertEqual(len(Credential.credentials_list), 1)
+
+    def test_save_multiple_credentials(self):
+        """
+        test_save_credential test case to test if test if multiple credential objects can be saved into the credentials_list
+        """
+
+        self.new_credential.save_credential()
+        test_credential = Credential("userPlatform", "userName", "user@email.com", "userPass")
+        test_credential.save_credential()
+        self.assertEqual(len(Credential.credentials_list), 2)
+
+    
 
     
 
