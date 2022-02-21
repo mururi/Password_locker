@@ -62,13 +62,16 @@ class TestCredentials(unittest.TestCase):
         self.new_credential.delete_credential()
         self.assertEqual(len(Credential.credentials_list), 1)
 
-        
-        
+    def test_find_credential_by_platform(self):
+        """
+        test_find_credential_by_platform test case to test if a credential can be found by the name of the platform
+        """
 
-    
-
-    
-
+        self.new_credential.save_credential()
+        test_credential = Credential("userPlatform", "userName", "user@email.com", "userPass")
+        test_credential.save_credential()
+        found_credential = Credential.find_by_platform("userPlatform")
+        self.assertEqual(found_credential.password, test_credential.password)
     
 
 if __name__ == '__main__':
