@@ -50,6 +50,21 @@ class TestCredentials(unittest.TestCase):
         test_credential.save_credential()
         self.assertEqual(len(Credential.credentials_list), 2)
 
+    def test_delete_credential(self):
+        """
+        test_delete_credential test case to test if a credential can be removed from credentials_list
+        """
+
+        self.new_credential.save_credential()
+        test_credential = Credential("userPlatform", "userName", "user@email.com", "userPass")
+        test_credential.save_credential()
+
+        self.new_credential.delete_credential()
+        self.assertEqual(len(Credential.credentials_list), 1)
+
+        
+        
+
     
 
     
