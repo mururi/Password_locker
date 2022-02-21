@@ -84,6 +84,12 @@ class TestCredentials(unittest.TestCase):
         credential_exists = Credential.credential_exists("userPlatform")
         self.assertTrue(credential_exists)
     
+    def test_display_all_credentials(self):
+        """
+        test_display_all_credentials test case to test if a list of all credentials can be returned
+        """
+
+        self.assertEqual(Credential.display_credentials(), Credential.credentials_list)
 
 if __name__ == '__main__':
     unittest.main()
