@@ -28,4 +28,12 @@ class User:
         User.users_list.remove(self)
 
     @classmethod
-    def au
+    def auth_user(cls, name, pw):
+        """
+        auth_user method authenticates user name and password and returns True if they both match an entry in the users list
+        """
+
+        for user in cls.users_list:
+            if user.user_name == name and user.user_pass == pw:
+                return True
+        return False
