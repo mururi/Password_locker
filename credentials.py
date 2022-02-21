@@ -43,4 +43,20 @@ class Credential:
         for credential in cls.credentials_list:
             if credential.platform == platform:
                 return credential
+
+    @classmethod
+    def credential_exists(cls, platform):
+        """
+        credential_exists method checks if a credential exists in the credentials list
+        
+        Args:
+            platform: platform name to search for
+        Returns:
+            Boolean: True or false depending on if the credential exists
+        """
+
+        for credential in cls.credentials_list:
+            if credential.platform == platform:
+                return True
+        return False
         
