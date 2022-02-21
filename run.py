@@ -24,6 +24,14 @@ def authenticate_user(name, pw):
 
     return User.auth_user(name, pw)
 
+def create_credential(platform, username, email, password):
+    """
+    Function that creates a new credential
+    """
+
+    new_credential = Credential(platform, username, email, password)
+    return new_credential
+
 
 def main():
     print("Welcome to Password Locker App")
@@ -68,7 +76,7 @@ def main():
                         print("\n")
                         print("Create new credential")
                         print("-"*15)
-                        
+
 
             else:
                 print("LOGIN FAILED: CHECK USERNAME OR EMAIL")
