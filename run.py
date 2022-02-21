@@ -46,6 +46,29 @@ def main():
             if authenticate_user(name, pw):
                 print("\n")
                 print("LOGIN SUCCESSFUL")
+                print("\n")
+
+                while True:
+                    print(f"""
+                    
+
+                    WELCOME TO YOUR ACCOUNT {name}
+                    --------------------
+                    Use the following shortcodes:
+                    cc - Create new credential
+                    dc - Display all your saved credentials
+                    fc - Find a saved credential by its platform name
+                    dl - Delete a saved credential
+                    ex - Log out
+
+
+                    """)
+                    acc_opt = input("What would you like to do?  ")
+                    if acc_opt == 'cc':
+                        print("\n")
+                        print("Create new credential")
+                        print("-"*15)
+                        
 
             else:
                 print("LOGIN FAILED: CHECK USERNAME OR EMAIL")
