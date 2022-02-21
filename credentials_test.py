@@ -15,6 +15,13 @@ class TestCredentials(unittest.TestCase):
 
         self.new_credential = Credential("dribbble", "Dennis Kiboi", "dennis.kiboi@student.moringaschool.com", "myDribbblePass")
 
+    def tearDown(self):
+        """
+        tearDown method does clean up after each test case has run
+        """
+
+        Credential.credentials_list = []
+
     def test_init(self):
         """
         test_init test case to test if the object is initialized properly
@@ -24,6 +31,10 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(self.new_credential.username, "Dennis Kiboi")
         self.assertEqual(self.new_credential.email, "dennis.kiboi@student.moringaschool.com")
         self.assertEqual(self.new_credential.password, "myDribbblePass")
+
+    
+
+    
 
 if __name__ == '__main__':
     unittest.main()
