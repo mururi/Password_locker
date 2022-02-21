@@ -17,3 +17,26 @@ def save_user(user):
 
     user.save_user()
 
+def authenticate_user(name, pw):
+    """
+    Function to authenticate the user
+    """
+
+    return User.auth_user(name, pw)
+
+
+def main():
+    print("Welcome to Password Locker App")
+    print('\n')
+    print("What would you like to do?")
+    print('\n')
+    
+    while True:
+        print("Use these short codes: li - log in, su - sign up, ex - exit")
+        print("-"*15)
+        main_opt = input().lower()
+        if main_opt == 'li':
+            print("Login to your Password Locker Account")
+            print("-"*15)
+
+            print("")
