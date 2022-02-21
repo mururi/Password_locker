@@ -32,6 +32,13 @@ def create_credential(platform, username, email, password):
     new_credential = Credential(platform, username, email, password)
     return new_credential
 
+def save_credential(credential):
+    """
+    Function that saves a new credential to the credentials list
+    """
+
+    credential.save_credential()
+
 
 def main():
     print("Welcome to Password Locker App")
