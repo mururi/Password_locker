@@ -26,3 +26,6 @@ class User:
         """
 
         User.users_list.remove(self)
+
+    @classmethod
+    def au

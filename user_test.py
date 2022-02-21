@@ -62,6 +62,17 @@ class TestUser(unittest.TestCase):
         self.new_user.delete_user() #delete a user object
         self.assertEqual(len(User.users_list), 1)
 
+    def test_auth_user(self):
+        """
+        test_auth_user test case to test user authentication. Returns true if the user name and password match a user entry in the users list
+        """
+
+        self.new_user.save_user()
+        test_user = User("John Doe", "userPass")
+        test_user.save_user()
+
+        self.assertTrue(User.auth_user("John Doe", "userPass"))
+
         
 
 if __name__ == '__main__':
