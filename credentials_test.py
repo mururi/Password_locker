@@ -72,6 +72,17 @@ class TestCredentials(unittest.TestCase):
         test_credential.save_credential()
         found_credential = Credential.find_by_platform("userPlatform")
         self.assertEqual(found_credential.password, test_credential.password)
+
+    def test_credential_exists(self):
+        """
+        test_credential_exists test case to test if a credential exists and return a boolean
+        """
+
+        self.new_credential.save_credential()
+        test_credential = Credential("userPlatform", "userName", "user@email.com", "userPass")
+        test_credential.save_credential()
+        credential_exists = Credential.credential_exists("userPlatform")
+        self.assertTrue(credential_exists)
     
 
 if __name__ == '__main__':
