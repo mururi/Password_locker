@@ -59,6 +59,20 @@ def display_credentials():
 
     return Credential.display_credentials()
 
+def check_existing_credential(platform):
+    """
+    Fuction that checks the credentials list to see if a credential exists and returns a boolean
+    """
+
+    return Credential.credential_exists(platform)
+
+def find_credential(platform):
+    """
+    Function that finds an existing credential and returns the dictionary
+    """
+
+    return Credential.find_by_platform(platform)
+
 def delete_credential(credential):
     """
     Function that deletes a credential from the credentials list
@@ -100,7 +114,7 @@ def main():
                     cc - Create new credential
                     dc - Display all your saved credentials
                     fc - Find a saved credential by its platform name
-                    dl - Delete a saved credential
+                    xc - Delete a saved credential
                     ex - Log out
 
 
@@ -124,9 +138,65 @@ def main():
                         save_credential(create_credential(platform, username, email, password))
                         print("\n")
                         print("New Credentials Successfuly Created")
+                        print("\n")
 
                     elif acc_opt == 'dc':
-                        if 
+                        if display_credentials():
+                            print("\n")
+                            print("Here is a list of all your credentials")
+                            print("-"*15)
+                            for credential in display_credentials():
+                                print(f"""
+                                {credential.platform}
+                                {credential.username}
+                                {credential.email}
+                                {credential.password}
+                                """)
+                                print("\n")
+                        else:
+                            print("\n")
+                            print("You don't seem to have any credentials saved yet")
+                            print("\n")
+                    
+                    elif acc_opt == 'fc':
+                        print("\n")
+                        search_platform = input("Enter the name of the platform whose credentials you want to find: ")
+                        if check_existing_credential(search_platform):
+                            search_credential = find_credential(search_platform)
+                            print("\n")
+                            print(f"""
+                            
+                            {search_credential.platform}
+                            {search_credential.username}
+                            {search_credential.email}
+                            {search_credential.password}
+
+                            """)
+                        else:
+                            print("\n")
+                            print("That credential does not exist")
+                            print("\n")
+
+                    elif acc_opt == 'xc':
+                        print("\n")
+                        del_platform = input("Enter the name of the platform whose credentials you want to delete: ")
+                        if check_existing_credential(del_platform):
+                            delete_credential(find_credential(del_platform))
+                            print(f"Credentials for {del_platform} have been successfully deleted.")
+                        else:
+                            print("\n")
+                            print("That credential does not exist")
+                            print("\n")
+
+                    elif acc_opt == 'ex':
+                        print("\n")
+                        print("YOU ARE LOGGED OUT. BYE!")
+                        print("\n")
+
+                    else:
+                        print("\n")
+                        print("Please enter a valid keyword")
+                        print("\n")
 
             else:
                 print("LOGIN FAILED: CHECK USERNAME OR EMAIL")
@@ -150,3 +220,6 @@ def main():
 
         else:
             print("Wrong entry. Please use the provided short codes.")
+
+if __name__ == "__main__":
+    main()
