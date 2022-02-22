@@ -1,4 +1,9 @@
 #!/usr/bin/env python3.8
+from platform import platform
+import random
+import string
+
+from pyrfc3339 import generate
 from user import User
 from credentials import Credential
 
@@ -24,6 +29,14 @@ def authenticate_user(name, pw):
 
     return User.auth_user(name, pw)
 
+def generate_pass(length):
+    """
+    Function that generates a random password
+    """
+
+    password = "".join(random.sample(string.ascii_lowercase + string.ascii_uppercase + string.digits + string.punctuation, length))
+    return password
+
 def create_credential(platform, username, email, password):
     """
     Function that creates a new credential
@@ -38,6 +51,20 @@ def save_credential(credential):
     """
 
     credential.save_credential()
+
+def display_credentials():
+    """
+    Function that returns all the saved credentials in the credentials list
+    """
+
+    return Credential.display_credentials()
+
+def delete_credential(credential):
+    """
+    Function that deletes a credential from the credentials list
+    """
+    credential.delete_credential()
+
 
 
 def main():
@@ -78,12 +105,28 @@ def main():
 
 
                     """)
-                    acc_opt = input("What would you like to do?  ")
+                    acc_opt = input("What would you like to do?  ").lower()
                     if acc_opt == 'cc':
                         print("\n")
                         print("Create new credential")
                         print("-"*15)
+                        platform = input("Enter the Platform: ")
+                        username = input("Enter the Username: ")
+                        email = input("Enter the Email: ")
+                        pass_opt = input("Do you want to generate a password? y/n  ").lower()
+                        if pass_opt == 'y':
+                            print("\n")
+                            length = int(input("Enter the desired password length: "))
+                            password = generate_pass(length)
+                        else:
+                            print("\n")
+                            password = input("Enter your password: ")
+                        save_credential(create_credential(platform, username, email, password))
+                        print("\n")
+                        print("New Credentials Successfuly Created")
 
+                    elif acc_opt == 'dc':
+                        if 
 
             else:
                 print("LOGIN FAILED: CHECK USERNAME OR EMAIL")
@@ -107,6 +150,3 @@ def main():
 
         else:
             print("Wrong entry. Please use the provided short codes.")
-
-if __name__ == '__main__':
-    main()
