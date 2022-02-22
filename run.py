@@ -1,5 +1,6 @@
 #!/usr/bin/env python3.8
 from platform import platform
+from rich import print
 import random
 import string
 
@@ -82,10 +83,14 @@ def delete_credential(credential):
 
 
 def main():
-    print("Welcome to Password Locker App")
+    print("""
+    
+    [blue bold]Welcome to Password Locker App[/blue bold]
+    """)
     print('\n')
     
     while True:
+        print("\n")
         print("What would you like to do?")
         print('\n')
         print("Use these short codes: li - log in, su - sign up, ex - exit")
@@ -101,7 +106,7 @@ def main():
 
             if authenticate_user(name, pw):
                 print("\n")
-                print("LOGIN SUCCESSFUL")
+                print("[green]LOGIN SUCCESSFUL[/green]")
                 print("\n")
 
                 while True:
@@ -192,6 +197,7 @@ def main():
                         print("\n")
                         print("YOU ARE LOGGED OUT. BYE!")
                         print("\n")
+                        break
 
                     else:
                         print("\n")
@@ -199,7 +205,7 @@ def main():
                         print("\n")
 
             else:
-                print("LOGIN FAILED: CHECK USERNAME OR EMAIL")
+                print("[red]LOGIN FAILED: CHECK USERNAME OR EMAIL[/red]")
 
         elif main_opt == 'su':
             print("\n")
@@ -211,8 +217,9 @@ def main():
 
             save_user(create_user(login, login_pass))
             print("\n")
-            print(f"Your new Username is : {login}")
-            print(f"Your new Password is : {login_pass}")
+            print(f"""Your new Username is : {login}
+                    Your new Password is : {login_pass}
+                """)
 
         elif main_opt == 'ex':
             print("GOODBYE!!")
